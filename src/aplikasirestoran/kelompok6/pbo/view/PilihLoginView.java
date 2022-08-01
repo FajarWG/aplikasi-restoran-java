@@ -88,7 +88,7 @@ public class PilihLoginView extends javax.swing.JFrame {
         });
         jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 150, 100));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tugasbesar/kelompok6/pbo/icon/user (2).png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasirestoran/kelompok6/pbo/icon/user (2).png"))); // NOI18N
         jLabel4.setText("jLabel4");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 101, -1));
 
