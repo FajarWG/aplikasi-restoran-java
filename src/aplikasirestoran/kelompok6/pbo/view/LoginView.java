@@ -80,7 +80,6 @@ public class LoginView extends javax.swing.JFrame {//implements LoginListener {
         jLabel3 = new javax.swing.JLabel();
 
         setTitle("LOGIN ADMIN");
-        setPreferredSize(new java.awt.Dimension(800, 720));
         getContentPane().setLayout(new java.awt.CardLayout());
 
         jPanel1.setBackground(new java.awt.Color(192, 57, 42));
@@ -126,7 +125,7 @@ public class LoginView extends javax.swing.JFrame {//implements LoginListener {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tugasbesar/kelompok6/pbo/icon/user (1).png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasirestoran/kelompok6/pbo/icon/user (1).png"))); // NOI18N
         jLabel3.setText("LOGIN FORM");
         jLabel3.setIconTextGap(10);
 
