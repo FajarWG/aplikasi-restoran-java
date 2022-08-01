@@ -141,7 +141,7 @@ public class AdminView extends javax.swing.JFrame {
 
         btnLogout.setBackground(new java.awt.Color(255, 255, 255));
         btnLogout.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tugasbesar/kelompok6/pbo/icon/logout.png"))); // NOI18N
+        btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasirestoran/kelompok6/pbo/icon/logout.png"))); // NOI18N
         btnLogout.setText("LOGOUT");
         btnLogout.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnLogout.setIconTextGap(10);
@@ -154,7 +154,7 @@ public class AdminView extends javax.swing.JFrame {
 
         btnDataMinuman.setBackground(new java.awt.Color(255, 255, 255));
         btnDataMinuman.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        btnDataMinuman.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tugasbesar/kelompok6/pbo/icon/drink.png"))); // NOI18N
+        btnDataMinuman.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasirestoran/kelompok6/pbo/icon/drink.png"))); // NOI18N
         btnDataMinuman.setText("DATA MINUMAN");
         btnDataMinuman.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnDataMinuman.setIconTextGap(10);
@@ -167,7 +167,7 @@ public class AdminView extends javax.swing.JFrame {
 
         btnDataTransaksi.setBackground(new java.awt.Color(255, 255, 255));
         btnDataTransaksi.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        btnDataTransaksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tugasbesar/kelompok6/pbo/icon/transaction.png"))); // NOI18N
+        btnDataTransaksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasirestoran/kelompok6/pbo/icon/transaction.png"))); // NOI18N
         btnDataTransaksi.setText("DATA TRANSAKSI");
         btnDataTransaksi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnDataTransaksi.setIconTextGap(10);
@@ -180,7 +180,7 @@ public class AdminView extends javax.swing.JFrame {
 
         btnAbout.setBackground(new java.awt.Color(255, 255, 255));
         btnAbout.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        btnAbout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tugasbesar/kelompok6/pbo/icon/about.png"))); // NOI18N
+        btnAbout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasirestoran/kelompok6/pbo/icon/about.png"))); // NOI18N
         btnAbout.setText("ABOUT");
         btnAbout.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnAbout.setIconTextGap(10);
@@ -193,7 +193,7 @@ public class AdminView extends javax.swing.JFrame {
 
         btnDataMakanan.setBackground(new java.awt.Color(255, 255, 255));
         btnDataMakanan.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        btnDataMakanan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tugasbesar/kelompok6/pbo/icon/food.png"))); // NOI18N
+        btnDataMakanan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasirestoran/kelompok6/pbo/icon/food.png"))); // NOI18N
         btnDataMakanan.setText("DATA MAKANAN");
         btnDataMakanan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnDataMakanan.setIconTextGap(10);
@@ -206,7 +206,7 @@ public class AdminView extends javax.swing.JFrame {
 
         btnHome.setBackground(new java.awt.Color(255, 255, 255));
         btnHome.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tugasbesar/kelompok6/pbo/icon/home.png"))); // NOI18N
+        btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasirestoran/kelompok6/pbo/icon/home.png"))); // NOI18N
         btnHome.setText("HOME");
         btnHome.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnHome.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
