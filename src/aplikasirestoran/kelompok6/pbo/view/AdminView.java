@@ -15,16 +15,26 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import aplikasirestoran.kelompok6.pbo.config.Koneksi;
+import aplikasirestoran.kelompok6.pbo.controller.AdminController;
+import aplikasirestoran.kelompok6.pbo.event.AdminListener;
+import aplikasirestoran.kelompok6.pbo.model.AdminModel;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
  * @author user
  */
-public class AdminView extends javax.swing.JFrame {
+public class AdminView extends javax.swing.JFrame implements AdminListener{
 
     /**
      * Creates new form AdminView
      */
+    private AdminController controller;
+    private AdminModel model;
+    
     public AdminView() {
         initComponents();
         tampilMakanan();
@@ -37,6 +47,115 @@ public class AdminView extends javax.swing.JFrame {
         setVisible(true);
         setResizable(false);
     }
+//Getter
+    public JButton getBtnAbout() {
+        return btnAbout;
+    }
+
+    public JButton getBtnCetak() {
+        return btnCetak;
+    }
+
+    public JButton getBtnDataMakanan() {
+        return btnDataMakanan;
+    }
+
+    public JButton getBtnDataMinuman() {
+        return btnDataMinuman;
+    }
+
+    public JButton getBtnDataTransaksi() {
+        return btnDataTransaksi;
+    }
+
+    public JButton getBtnEdit() {
+        return btnEdit;
+    }
+
+    public JButton getBtnEdit4() {
+        return btnEdit4;
+    }
+
+    public JButton getBtnHapus() {
+        return btnHapus;
+    }
+
+    public JButton getBtnHapus4() {
+        return btnHapus4;
+    }
+
+    public JButton getBtnHome() {
+        return btnHome;
+    }
+
+    public JButton getBtnLogout() {
+        return btnLogout;
+    }
+
+    public JButton getBtnTambah() {
+        return btnTambah;
+    }
+
+    public JButton getBtnTambah4() {
+        return btnTambah4;
+    }
+
+    public JLabel getLblPenghasilan() {
+        return lblPenghasilan;
+    }
+
+    public JLabel getLblPenjualan() {
+        return lblPenjualan;
+    }
+
+    public JTable getTableMakanan() {
+        return tableMakanan;
+    }
+
+    public JTable getTableMinum() {
+        return tableMinum;
+    }
+
+    public JTable getTableTransaksi() {
+        return tableTransaksi;
+    }
+
+    public JTextField getTxtHargaMakanan() {
+        return txtHargaMakanan;
+    }
+
+    public JTextField getTxtHargaMinum() {
+        return txtHargaMinum;
+    }
+
+    public JTextField getTxtIdMakanan() {
+        return txtIdMakanan;
+    }
+
+    public JTextField getTxtIdMinum() {
+        return txtIdMinum;
+    }
+
+    public JTextField getTxtNamaMakanan() {
+        return txtNamaMakanan;
+    }
+
+    public JTextField getTxtNamaMinum() {
+        return txtNamaMinum;
+    }
+
+    public JLabel getTxtTotalMakanan() {
+        return txtTotalMakanan;
+    }
+
+    public JLabel getTxtTotalPenghasilan() {
+        return txtTotalPenghasilan;
+    }
+
+    public JLabel getTxtTotalPenjualan() {
+        return txtTotalPenjualan;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -1249,30 +1368,7 @@ public class AdminView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditMouseClicked
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        String inputID = txtIdMakanan.getText();
-         String inputNama = txtNamaMakanan.getText();
-         String inputHarga = txtHargaMakanan.getText();
-
-         if (txtIdMakanan.getText().equals("") || txtNamaMakanan.getText().equals("")){
-            JOptionPane.showMessageDialog(this,"Data Harus di isi");
-         }else{
-         try {
-             
-            Connection con = new Koneksi().konek();
-            String sql = "UPDATE makanan SET nama_makanan = ?, harga_makanan =? where id_makanan =?";
-            PreparedStatement ps = con.prepareStatement(sql);
-            
-            ps.setString(1, inputNama);
-            ps.setString(2, inputHarga);
-            ps.setString(3, inputID);
-            ps.executeUpdate();
-            JOptionPane.showMessageDialog(this,"Berhasil Mengedit Data");
-            tampilMakanan();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
-            
-        }
-         }
+        controller.editMakanan(this);
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnHapusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHapusMouseClicked
@@ -1280,49 +1376,10 @@ public class AdminView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHapusMouseClicked
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
-       String inputID = txtIdMakanan.getText();
-                
-        if (txtIdMakanan.getText().equals("") || txtNamaMakanan.getText().equals("")){
-            JOptionPane.showMessageDialog(this,"Data Harus di isi");
-         }else{
-        try {
-            Connection con = new Koneksi().konek();
-            String sql = "DELETE FROM makanan WHERE id_makanan = ?";
-            PreparedStatement ps = con.prepareStatement(sql);
-            
-            ps.setString(1, inputID);
-            ps.executeUpdate();
-            JOptionPane.showMessageDialog(this,"Berthasil Di Hapus");
-            tampilMakanan();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }
-    }                                        
+       controller.hapusMakanan(this);
     }
     private void btnEditMinumanActionPerformed(java.awt.event.ActionEvent evt) {                                               
-        String inputID = txtIdMinum.getText();
-         String inputNama = txtNamaMinum.getText();
-         String inputHarga = txtHargaMinum.getText();
-
-         if (txtIdMinum.getText().equals("") || txtNamaMinum.getText().equals("")){
-            JOptionPane.showMessageDialog(this,"Data Harus di isi");
-         }else{ 
-         try {
-             
-            Connection con = new Koneksi().konek();
-            String sql = "UPDATE minuman SET nama_minuman = ?, harga_minuman =? where id_minuman =?";
-            PreparedStatement ps = con.prepareStatement(sql);
-            
-            ps.setString(1, inputNama);
-            ps.setString(2, inputHarga);
-            ps.setString(3, inputID);
-            ps.executeUpdate();
-            JOptionPane.showMessageDialog(this,"Berhasil Mengedit Data");
-            tampilMinuman();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());  
-        }
-    }                    
+        controller.editMinuman(this);
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void btnTambahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTambahMouseClicked
@@ -1330,28 +1387,7 @@ public class AdminView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTambahMouseClicked
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
-        String inputID = txtIdMakanan.getText();
-        String inputNAMA = txtNamaMakanan.getText();
-        String inputHARGA = txtHargaMakanan.getText();
-        
-        //menu.add(inputID);
-        //menu.add(inputNAMA);
-        //menu.add(inputHARGA);
-        
-            
-        try {
-            Connection con = new Koneksi().konek();
-            String sql = "INSERT INTO makanan VALUES (?,?,?)";
-            PreparedStatement ps = con.prepareStatement(sql);
-            
-            ps.setString(1, inputID);
-            ps.setString(2, inputNAMA);
-            ps.setString(3, inputHARGA);
-            ps.executeUpdate();
-            JOptionPane.showMessageDialog(this,"Data Berhasil Ditambahkan");
-            tampilMakanan();
-        } catch (Exception e) {
-        }
+        controller.tambahMakanan(this);
     }//GEN-LAST:event_btnTambahActionPerformed
 
     private void txtIdMinumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdMinumActionPerformed
@@ -1367,29 +1403,7 @@ public class AdminView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEdit4MouseClicked
 
     private void btnEdit4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEdit4ActionPerformed
-       String inputID = txtIdMinum.getText();
-         String inputNama = txtNamaMinum.getText();
-         String inputHarga = txtHargaMinum.getText();
-
-         if (txtIdMinum.getText().equals("") || txtNamaMinum.getText().equals("")){
-            JOptionPane.showMessageDialog(this,"Data Harus di isi");
-         }else{ 
-         try {
-             
-            Connection con = new Koneksi().konek();
-            String sql = "UPDATE minuman SET nama_minuman = ?, harga_minuman =? where id_minuman =?";
-            PreparedStatement ps = con.prepareStatement(sql);
-            
-            ps.setString(1, inputNama);
-            ps.setString(2, inputHarga);
-            ps.setString(3, inputID);
-            ps.executeUpdate();
-            JOptionPane.showMessageDialog(this,"Berhasil Mengedit Data");
-            tampilMinuman();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());  
-        }
-    }                 
+      controller.editMinuman(this);
     }//GEN-LAST:event_btnEdit4ActionPerformed
 
     private void btnHapus4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHapus4MouseClicked
@@ -1397,25 +1411,7 @@ public class AdminView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHapus4MouseClicked
 
     private void btnHapus4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapus4ActionPerformed
-        String inputID = txtIdMinum.getText();
-        
-        if (txtIdMinum.getText().equals("") || txtNamaMinum.getText().equals("")){
-            JOptionPane.showMessageDialog(this,"Data Harus di isi");
-         }else{ 
-        
-        try {
-            Connection con = new Koneksi().konek();
-            String sql = "DELETE FROM minuman WHERE id_minuman = ?";
-            PreparedStatement ps = con.prepareStatement(sql);
-            
-            ps.setString(1, inputID);
-            ps.executeUpdate();
-            JOptionPane.showMessageDialog(this,"Berthasil Di Hapus");
-            tampilMinuman();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }
-    }                   
+        controller.hapusMinuman(this);
     }//GEN-LAST:event_btnHapus4ActionPerformed
 
     private void btnTambah4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTambah4MouseClicked
@@ -1423,31 +1419,7 @@ public class AdminView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTambah4MouseClicked
 
     private void btnTambah4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambah4ActionPerformed
-        String inputID = txtIdMinum.getText();
-        String inputNAMA = txtNamaMinum.getText();
-        String inputHARGA = txtHargaMinum.getText();
-        
-        //menu.add(inputID);
-        //menu.add(inputNAMA);
-        //menu.add(inputHARGA);
-        if (txtIdMinum.getText().equals("") || txtNamaMinum.getText().equals("")){
-            JOptionPane.showMessageDialog(this,"Data Harus di isi");
-         }else{
-            
-        try {
-            Connection con = new Koneksi().konek();
-            String sql = "INSERT INTO minuman VALUES (?,?,?)";
-            PreparedStatement ps = con.prepareStatement(sql);
-            
-            ps.setString(1, inputID);
-            ps.setString(2, inputNAMA);
-            ps.setString(3, inputHARGA);
-            ps.executeUpdate();
-            JOptionPane.showMessageDialog(this,"Data Berhasil Ditambahkan");
-            tampilMinuman();
-        } catch (Exception e) {
-        }
-    }                
+        controller.tambahMinuman(this);
     }//GEN-LAST:event_btnTambah4ActionPerformed
 
     private void btnCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCetakActionPerformed

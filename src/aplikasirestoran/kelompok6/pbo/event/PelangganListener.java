@@ -5,10 +5,13 @@
  */
 package aplikasirestoran.kelompok6.pbo.event;
 
+import aplikasirestoran.kelompok6.pbo.model.AdminModel;
+
 /**
  *
  * @author Asus N751J
  */
 public interface PelangganListener {
     
+    void onChange(AdminModel model);
 }
