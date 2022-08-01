@@ -241,7 +241,7 @@ int _minuman;
         jLabel11.setText("MIE AYAM");
         jPanel4.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 200, 70, -1));
 
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tugasbesar/kelompok6/pbo/icon/jempol.png"))); // NOI18N
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasirestoran/kelompok6/pbo/icon/jempol.png"))); // NOI18N
         jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 0, 40, 50));
 
         bodyPanel.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 720, 260));
