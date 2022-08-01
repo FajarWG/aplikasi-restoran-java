@@ -362,7 +362,7 @@
             <Component class="javax.swing.JLabel" name="jLabel7">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/tugasbesar/kelompok6/pbo/icon/takoyaki.png"/>
+                  <Image iconType="3" name="/aplikasirestoran/kelompok6/pbo/icon/takoyaki.png"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -374,7 +374,7 @@
             <Component class="javax.swing.JLabel" name="jLabel9">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/tugasbesar/kelompok6/pbo/icon/mieayam.png"/>
+                  <Image iconType="3" name="/aplikasirestoran/kelompok6/pbo/icon/mieayam.png"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -386,7 +386,7 @@
             <Component class="javax.swing.JLabel" name="jLabel6">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/tugasbesar/kelompok6/pbo/icon/roti.png"/>
+                  <Image iconType="3" name="/aplikasirestoran/kelompok6/pbo/icon/roti.png"/>
                 </Property>
               </Properties>
               <Constraints>
