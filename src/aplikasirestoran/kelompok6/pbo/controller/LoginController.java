@@ -43,15 +43,15 @@ public class LoginController {
                     String username = rs.getString("username");
                     String password = rs.getString("password");
                     
-                    if(user.equals(username) && pass.equals(password)){
+                    if(!user.equals(username) || !pass.equals(password)){
+                        model.loginNotValid();
+                    }else if (user.equals(username) && pass.equals(password)){
                         model.setUsername(user);
                         model.setPassword(pass);
                         
                         model.loginForm();
                         this.tampilAdminView();
                         view.dispose();
-                    }else {
-                        model.loginNotValid();
                     }
                 }
             }

@@ -11,27 +11,65 @@ import java.sql.ResultSet;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import aplikasirestoran.kelompok6.pbo.config.Koneksi;
+import aplikasirestoran.kelompok6.pbo.controller.PelangganController;
+import aplikasirestoran.kelompok6.pbo.event.PelangganListener;
+import aplikasirestoran.kelompok6.pbo.model.PelangganModel;
 import aplikasirestoran.kelompok6.pbo.view.AdminView;
 
 /**
  *
  * @author asus
  */
-public class PelangganView extends javax.swing.JFrame {
+public class PelangganView extends javax.swing.JFrame implements PelangganListener {
 
+    private PelangganModel model;
+    private PelangganController controller;
     /**
      * Creates new form MenuPelangganView
      */
     public PelangganView() {
+        model = new PelangganModel();
+        controller = new PelangganController();
+        
+        model.setPelangganListener(this);
+        controller.setModel(model);
+        
         initComponents();
+        
         tampilCbMakanan();
         tampilCbMinuman();
         setExtendedState(JFrame.MAXIMIZED_HORIZ);
         setVisible(true);
         setResizable(false);
     }
-int _makanan;
-int _minuman;
+    
+    public javax.swing.JComboBox<String> getCmbMakanan() {
+        return cmbMakanan;
+    }
+    public javax.swing.JComboBox<String> getCmbMinuman() {
+        return cmbMinuman;
+    }
+    public javax.swing.JTextField getTxtHargaMakan() {
+        return txtHargaMakan;
+    }
+    public javax.swing.JTextField getTxtHargaMinum() {
+        return txtHargaMinum;
+    }
+    public javax.swing.JTextField getTxtNama() {
+        return txtNama;
+    }
+    public javax.swing.JTextField getTxtQtyMakan() {
+        return txtQtyMakan;
+    }
+    public javax.swing.JTextField getTxtQtyMinum() {
+        return txtQtyMinum;
+    }
+    public javax.swing.JTextField getTxtTotal() {
+        return txtTotal;
+    }
+    
+    int _makanan;
+    int _minuman;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -131,8 +169,9 @@ int _minuman;
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Qty   :");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 150, -1, -1));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel3.setText("Jumlah  :");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, -1, -1));
 
         txtHargaMinum.setEditable(false);
         txtHargaMinum.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -151,13 +190,15 @@ int _minuman;
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel15.setText("Harga :");
         jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, -1, -1));
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel16.setText("Qty   :");
-        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel16.setText("Jumlah  :");
+        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
 
         txtHargaMakan.setEditable(false);
         txtHargaMakan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -174,6 +215,11 @@ int _minuman;
         txtQtyMakan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtQtyMakanActionPerformed(evt);
+            }
+        });
+        txtQtyMakan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtQtyMakanKeyReleased(evt);
             }
         });
         jPanel2.add(txtQtyMakan, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 30, 30));
@@ -297,7 +343,7 @@ int _minuman;
 
     private void cmbMinumanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbMinumanActionPerformed
         // TODO add your handling code here:
-        String input = cmbMinuman.getSelectedItem().toString();
+        String input = getCmbMinuman().getSelectedItem().toString();
         
         try {
             Connection con = new Koneksi ().konek();
@@ -310,7 +356,7 @@ int _minuman;
             
             while (rs.next()) {
                _minuman = Integer.parseInt(rs.getString("id_minuman"));
-               txtHargaMinum.setText(rs.getString("harga_minuman"));
+                getTxtHargaMinum().setText(rs.getString("harga_minuman"));
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
@@ -318,7 +364,7 @@ int _minuman;
     }//GEN-LAST:event_cmbMinumanActionPerformed
 
     private void cmbMakananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbMakananActionPerformed
-        String input = cmbMakanan.getSelectedItem().toString();
+        String input = getCmbMakanan().getSelectedItem().toString();
         
         try {
             Connection con = new Koneksi ().konek();
@@ -331,7 +377,7 @@ int _minuman;
             
             while (rs.next()) {
                _makanan = Integer.parseInt(rs.getString("id_makanan"));
-               txtHargaMakan.setText(rs.getString("harga_makanan"));
+                getTxtHargaMakan().setText(rs.getString("harga_makanan"));
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
@@ -343,7 +389,7 @@ int _minuman;
     }//GEN-LAST:event_txtQtyMinumActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void txtHargaMinumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHargaMinumActionPerformed
@@ -367,62 +413,24 @@ int _minuman;
     }//GEN-LAST:event_txtTotalActionPerformed
 
     private void btnPesanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesanMouseClicked
-        // TODO add your handling code here:
+        controller.kirimPesanan(this);
     }//GEN-LAST:event_btnPesanMouseClicked
 
     private void btnResetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnResetMouseClicked
-        // TODO add your handling code here:
+        controller.resetPesanan(this);
     }//GEN-LAST:event_btnResetMouseClicked
 
     private void btnPesanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesanActionPerformed
-        String nama= txtNama.getText();
-        String namaMakanan = cmbMakanan.getSelectedItem().toString();
-        int makanan = _makanan;
-        String hargaMakanan = txtHargaMakan.getText();;
-        String tmakanan = txtQtyMakan.getText();
-        int minuman = _minuman;
-        String namaMinuman = cmbMinuman.getSelectedItem().toString();
-        String hargaMinuman = txtHargaMinum.getText();
-        String tminuman = txtQtyMinum.getText();
-        String total = txtTotal.getText();
-        try {
-            Connection con = new Koneksi().konek();
-            String sql = "INSERT INTO transaksi (nama_pelanggan, id_makanan,harga_makanan,total_makanan,"
-                    + " id_minuman,harga_minuman,total_minuman,total_bayar) VALUES ( ?, ?, ?, ?, ?, ?, ?,?)";
-            PreparedStatement ps = con.prepareStatement(sql);
-            
-            ps.setString(1, nama);
-            ps.setInt(2, makanan);
-            ps.setString(3, hargaMakanan);
-            ps.setString(4, tmakanan);
-            ps.setInt(5, minuman);
-            ps.setString(6, hargaMinuman);
-            ps.setString(7, tminuman);
-            ps.setString(8, total);
-            
-            ps.executeUpdate();
-            JOptionPane.showMessageDialog(this,"Pesanan Anda \n Nama : "+nama+" \n makanan : "+namaMakanan+" \n harga makanan : "+
-                    hargaMakanan+" \n Qty : "+tmakanan+" \n Minuman : "+namaMinuman+" \n harga minuman : "+hargaMinuman+
-                    " \n Qty : "+tminuman+" \n Total Bayar : "+total+"\n SILAHKAN BAYAR KE KASIR");
-            
-            
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }
+        
     }//GEN-LAST:event_btnPesanActionPerformed
 
     private void txtQtyMinumKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQtyMinumKeyReleased
-       int hargaMakanan;
-        int hargaMinuman;
-        int jumlahMakanan;
-        int jumlahMinuman;
-        hargaMakanan=Integer.valueOf(txtHargaMakan.getText());
-        hargaMinuman=Integer.valueOf(txtHargaMinum.getText());
-        jumlahMakanan=Integer.valueOf(txtQtyMakan.getText());
-        jumlahMinuman=Integer.valueOf(txtQtyMinum.getText());
-        int total=hargaMakanan*jumlahMakanan+hargaMinuman*jumlahMinuman;
-        txtTotal.setText(String.valueOf(total));
+      controller.hitungTotalAuto(this);
     }//GEN-LAST:event_txtQtyMinumKeyReleased
+
+    private void txtQtyMakanKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQtyMakanKeyReleased
+//      controller.hitungTotalAuto(this); 
+    }//GEN-LAST:event_txtQtyMakanKeyReleased
    
     public void tampilCbMakanan(){
         try {
@@ -432,7 +440,7 @@ int _minuman;
             ResultSet rs = ps.executeQuery();
             
             while (rs.next()){
-               cmbMakanan.addItem(rs.getString("nama_makanan"));
+                getCmbMakanan().addItem(rs.getString("nama_makanan"));
             }
             
         } catch (Exception e) {
@@ -448,7 +456,7 @@ int _minuman;
             ResultSet rs = ps.executeQuery();
             
             while (rs.next()){
-               cmbMinuman.addItem(rs.getString("nama_minuman"));
+                getCmbMinuman().addItem(rs.getString("nama_minuman"));
             }
             
         } catch (Exception e) {
@@ -529,4 +537,14 @@ int _minuman;
     private javax.swing.JTextField txtQtyMinum;
     private javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void onChange(PelangganModel pelanggan) {
+//        this.cmbMakanan.setSelectedItem(pelanggan.getNamaMakanan());
+//        this.cmbMinuman.setSelectedItem(pelanggan.getNamaMinuman());
+//        this.txtQtyMakan.setText(pelanggan.getTmakanan());
+        
+    }
+
+
 }
