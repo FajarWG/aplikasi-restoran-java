@@ -217,7 +217,7 @@ public class AdminView extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tugasbesar/kelompok6/pbo/icon/logo.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/aplikasirestoran/kelompok6/pbo/icon/logo.png"))); // NOI18N
 
         javax.swing.GroupLayout panelMenuLayout = new javax.swing.GroupLayout(panelMenu);
         panelMenu.setLayout(panelMenuLayout);
