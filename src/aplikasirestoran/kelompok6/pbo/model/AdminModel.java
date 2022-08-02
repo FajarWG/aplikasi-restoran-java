@@ -5,6 +5,7 @@
  */
 package aplikasirestoran.kelompok6.pbo.model;
 
+import aplikasirestoran.kelompok6.pbo.event.PelangganListener;
 import javax.swing.JOptionPane;
 
 /**
@@ -29,8 +30,18 @@ public class AdminModel {
     private int totalBayar;
     private String idTransaksi;
     private String namaPelanggan;
-
+    private PelangganListener listener;
     
+    
+ 
+    
+    public PelangganListener getListener() {
+        return listener;
+    }
+
+    public void setListener(PelangganListener listener) {
+        this.listener = listener;
+    }
     
     /**
      * @return the totalmakanminum
@@ -226,5 +237,9 @@ public class AdminModel {
    public void editMinuman(){
        JOptionPane.showMessageDialog(null,"Berhasil Mengedit Data");
    }
-    
+    protected void fireOnChange(){ //kalo ada event maka tembakan modelnya
+        if(listener != null){
+            this.listener.onChange(this);
+        }
+    }
 }
