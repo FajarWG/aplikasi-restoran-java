@@ -50,16 +50,18 @@ public class AdminController {
             ps.setString(2, inputNamaMakanan);
             ps.setString(3, inputHargaMakanan);
             ps.executeUpdate();
-            model.tambahMakananan();
+            model.tambahData();
+            model.resetMakanan();
             view.tampilMakanan();
+            
         } catch (Exception e) {
       }
     }
     
     public void editMakanan(AdminView view){
-         String inputIdMinuman = view.getTxtIdMinum().getText();
-         String inputNamaMinuman = view.getTxtNamaMinum().getText();
-         String inputHargaMinuman = view.getTxtHargaMinum().getText();
+         String inputIdMakanan = view.getTxtIdMakanan().getText();
+         String inputNamaMakanan = view.getTxtNamaMakanan().getText();
+         String inputHargaMakanan = view.getTxtHargaMakanan().getText();
 
          if (view.getTxtIdMakanan().getText().equals("") || view.getTxtNamaMakanan().getText().equals("")){
             JOptionPane.showMessageDialog(view,"Data Harus di isi");
@@ -70,12 +72,14 @@ public class AdminController {
             String sql = "UPDATE makanan SET nama_makanan = ?, harga_makanan =? where id_makanan =?";
             PreparedStatement ps = con.prepareStatement(sql);
             
-            ps.setString(1, inputNamaMinuman);
-            ps.setString(2, inputHargaMinuman);
-            ps.setString(3, inputIdMinuman);
+            ps.setString(1, inputNamaMakanan);
+            ps.setString(2, inputHargaMakanan);
+            ps.setString(3, inputIdMakanan);
             ps.executeUpdate();
-            model.editMakanan();
+            model.editData();
+            model.resetMakanan();
             view.tampilMakanan();
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(view, e.getMessage());
             
@@ -97,7 +101,9 @@ public class AdminController {
             ps.setString(1, inputID);
             ps.executeUpdate();
             JOptionPane.showMessageDialog(view,"Berthasil Di Hapus");
+            model.resetMakanan();
             view.tampilMakanan();
+           
         } catch (Exception e) {
             JOptionPane.showMessageDialog(view, e.getMessage());
         }
@@ -125,8 +131,10 @@ public class AdminController {
             ps.setString(2, inputNamaMinuman);
             ps.setString(3, inputHargaMinuman);
             ps.executeUpdate();
-            model.tambahMinuman();
+            model.tambahData();
+            model.resetMinuman();
             view.tampilMinuman();
+           
         } catch (Exception e) {
         }
       }
@@ -149,8 +157,10 @@ public class AdminController {
             ps.setString(2, inputHargaMinuman);
             ps.setString(3, inputIdMinuman);
             ps.executeUpdate();
-            model.editMinuman();
+            model.editData();
+            model.resetMinuman();
             view.tampilMinuman();
+         
         } catch (Exception e) {
             JOptionPane.showMessageDialog(view, e.getMessage());  
         }
@@ -172,13 +182,14 @@ public class AdminController {
             ps.setString(1, inputIdMinuman);
             ps.executeUpdate();
             JOptionPane.showMessageDialog(view,"Berthasil Di Hapus");
+            model.resetMinuman();
             view.tampilMinuman();
+          
         } catch (Exception e) {
             JOptionPane.showMessageDialog(view, e.getMessage());
         }
     }      
-    }
-      
+    }      
     }
    
     

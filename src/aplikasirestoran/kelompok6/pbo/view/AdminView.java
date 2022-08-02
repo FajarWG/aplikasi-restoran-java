@@ -36,12 +36,20 @@ public class AdminView extends javax.swing.JFrame implements AdminListener{
     private AdminModel model;
     
     public AdminView() {
+        
+        model = new AdminModel();
+        controller = new AdminController();
+        
         initComponents();
+             
+        model.setListener(this);
+        controller.setModel(model);
         tampilMakanan();
         tampilMinuman();
         tampilTransaksi();
         tampilPenjualan();
         tampilPenghasilan();
+        
         //untuk mengset Frame agar tidak berubah
         setExtendedState(JFrame.MAXIMIZED_HORIZ);
         setVisible(true);
@@ -248,6 +256,7 @@ public class AdminView extends javax.swing.JFrame implements AdminListener{
 
         txtTotalMakanan.setBackground(new java.awt.Color(204, 204, 204));
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MENU ADMIN");
         getContentPane().setLayout(new java.awt.CardLayout());
 
@@ -1552,6 +1561,27 @@ public class AdminView extends javax.swing.JFrame implements AdminListener{
             
         }
     }
+    
+    public void tampilTotalMakanMinum(){
+        try {
+            Connection con = new Koneksi().konek();
+            String sql = "SELECT COUNT(*) AS transaksicount FROM transaksi ";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()){
+               int count = rs.getInt("transaksicount");
+               lblPenjualan.setText(String.valueOf(count));
+            }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+            
+        }
+    }
+    
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1665,4 +1695,14 @@ public class AdminView extends javax.swing.JFrame implements AdminListener{
     private javax.swing.JLabel txtTotalPenghasilan;
     private javax.swing.JLabel txtTotalPenjualan;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void onChange(AdminModel admin) {
+       this.txtIdMakanan.setText(admin.getId_makanan());
+       this.txtNamaMakanan.setText(admin.getNama_makanan());
+       this.txtHargaMakanan.setText(admin.getHarga_makanan());
+       this.txtIdMinum.setText(admin.getId_minuman());
+       this.txtNamaMinum.setText(admin.getNama_minuman());
+       this.txtHargaMinum.setText(admin.getHarga_minuman());
+    }
 }
